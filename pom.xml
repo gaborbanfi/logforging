@@ -50,8 +50,7 @@
 
 		<dependency>
 			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver-sync</artifactId>
-			<version>3.7.1</version>
+			<artifactId>mongo-java-driver</artifactId>
 		</dependency>
 	</dependencies>
 
