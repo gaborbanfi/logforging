@@ -1,6 +1,7 @@
 package com.garage.logforging.service;
 
 import com.garage.logforging.entities.Balance;
+import com.garage.logforging.repository.BankRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

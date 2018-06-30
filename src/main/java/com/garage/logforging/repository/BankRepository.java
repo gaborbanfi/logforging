@@ -1,4 +1,4 @@
-package com.garage.logforging.service;
+package com.garage.logforging.repository;
 
 import com.garage.logforging.entities.Balance;
 import org.springframework.stereotype.Repository;
