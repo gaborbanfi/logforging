@@ -17,4 +17,8 @@ public class AdminService {
     public void fillHistory() {
         adminRepository.fillHistory();
     }
+
+    public void dropHistory() {
+        adminRepository.dropHistory();
+    }
 }

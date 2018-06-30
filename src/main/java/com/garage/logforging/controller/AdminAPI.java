@@ -27,7 +27,19 @@ public class AdminAPI {
         try {
             adminService.fillHistory();
         } catch (Exception e) {
-            LOGGER.error(e);
+            LOGGER.error("fillHistory failed with exception: " + e);
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return HttpStatus.OK;
+    }
+
+    @PostMapping("/drop")
+    @ResponseBody
+    public HttpStatus dropHistory() {
+        try {
+            adminService.dropHistory();
+        } catch (Exception e) {
+            LOGGER.error("dropHistory failed with exception: " + e);
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return HttpStatus.OK;
