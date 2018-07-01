@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static org.owasp.esapi.ESAPI.encoder;
 
 @Service
@@ -28,6 +30,10 @@ public class BankingService {
     public Balance getSecureBalanceOfUser(String userGuid) {
         LOGGER.info("Balance is requested for user id = " + encode(userGuid));
         return bankRepository.getBalance(userGuid);
+    }
+
+    public List<Balance> getHistoryForUser(String guid) {
+        return bankRepository.getHistoryForUser(guid);
     }
 
     private String encode(String message) {

@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Currency;
+import java.util.List;
+import java.util.function.Consumer;
 
 @Repository
 public class BankRepository {
@@ -39,5 +42,23 @@ public class BankRepository {
         BigDecimal amount = BigDecimal.valueOf((double) balance.get("amount"));
         Currency currency = Currency.getInstance((String) balance.get("currency"));
         return new Balance(amount, currency);
+    }
+
+    public List<Balance> getHistoryForUser(String guid) {
+        MongoCollection<Document> collection = dbHelper.getHistoryCollection();
+
+        Document searchQuery = new Document();
+        searchQuery.put("user", guid);
+
+        FindIterable<Document> documents = collection.find(searchQuery);
+        List<Balance> result = new ArrayList<>();
+
+        documents.forEach((Consumer<? super Document>) document -> {
+            BigDecimal amount = BigDecimal.valueOf((double) document.get("amount"));
+            Currency currency = Currency.getInstance((String) document.get("currency"));
+            result.add(new Balance(amount, currency));
+        });
+
+        return result;
     }
 }
